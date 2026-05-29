@@ -39,11 +39,11 @@
             @endif
 
             @if(auth()->user()->role == 'mentee')
-                @include('mentee.dashboard')
+                @include('mentee.dashboard-content')
             @elseif(auth()->user()->role == 'mentor')
-                @include('mentor.dashboard')
+                @include('mentor.dashboard-content')
             @elseif(auth()->user()->role == 'admin')
-                @include('admin.dashboard')
+                @include('admin.dashboard-content')
             @endif
 
         </div>

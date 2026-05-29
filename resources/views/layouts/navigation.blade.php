@@ -15,6 +15,24 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @if (auth()->user()->role == 'mentee')
+                        <x-nav-link :href="url('/explore')" :active="request()->is('/explore')">
+                            {{ __('Cari Mentor') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if (auth()->user()->role == 'mentor')
+                        <x-nav-link :href="url('#')" :active="false">
+                            {{ __('Jadwal Mentoring') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if (auth()->user()->role == 'admin')
+                        <x-nav-link :href="url('#')" :active="false">
+                            {{ __('Kelola User') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

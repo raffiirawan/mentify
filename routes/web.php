@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MentorApplicationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ExploreController; 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,6 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Mentee Routes
+    Route::get('/explore', [ExploreController::class, 'index'])->name('mentee.explore');
 
     // Mentor Application Routes
     Route::get('/mentor/apply', [MentorApplicationController::class, 'create'])->name('mentor.apply');
