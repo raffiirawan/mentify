@@ -41,18 +41,19 @@
 
                 <!-- ========== BAGIAN KANAN: CTA Buttons ========== -->
                 <div class="flex items-center gap-4">
-                    @auth
-                        <!-- Jika sudah login: Tampilkan tombol Dashboard -->
-                        <a href="{{ route('dashboard') }}" class="bg-mentify-blue hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg transition-colors">
-                            Dashboard
-                        </a>
-                    @else
-                        <!-- Jika belum login: Tampilkan Masuk & Mulai Sekarang -->
-                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-mentify-blue font-medium transition-colors">
+                    @guest
+                        <a href="{{ route('login') }}" class="text-slate-600 font-semibold hover:text-mentify-blue transition">
                             Masuk
                         </a>
-                        <a href="{{ route('register') }}" class="bg-mentify-blue hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg transition-colors">
+                        <a href="{{ route('register') }}" class="bg-mentify-blue text-white px-5 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition shadow-md">
                             Mulai Sekarang
+                        </a>
+                    @endguest
+
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="bg-mentify-navy text-white px-5 py-2.5 rounded-lg font-bold hover:bg-gray-800 transition shadow-md flex items-center gap-2">
+                            <span>Ke Dashboard</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     @endauth
                 </div>
@@ -72,7 +73,7 @@
                 <div>
                     <!-- Heading Utama -->
                     <h1 class="text-5xl lg:text-6xl font-extrabold text-mentify-dark leading-tight">
-                        Mentoring Project & Tugas Langsung dari Kating Berpengalaman
+                        Mentoring Project & Tugas Langsung dari Mentor Berpengalaman
                     </h1>
 
                     <!-- Deskripsi -->
