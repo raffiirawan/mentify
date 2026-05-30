@@ -72,6 +72,6 @@ class ExploreController extends Controller
         ])
         ->findOrFail($id);
 
-        return view('mentee.mentor-detail', compact($mentor));
+        return view('mentee.mentor-detail', compact('mentor'));
     }
 }

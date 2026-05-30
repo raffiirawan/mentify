@@ -170,7 +170,7 @@
                                         </span>
                                     </div>
 
-                                    <a href="#" class="text-mentify-blue border border-mentify-blue px-4 py-2 rounded-lg hover:bg-blue-50 transition font-semibold text-sm">
+                                    <a href="{{ route('mentee.mentor.detail', $mentor->id) }}" class="text-mentify-blue border border-mentify-blue px-4 py-2 rounded-lg hover:bg-blue-50 transition font-semibold text-sm">
                                         Lihat Profil
                                     </a>
                                 </div>
