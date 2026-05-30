@@ -27,6 +27,25 @@ Route::middleware('auth')->group(function () {
     Route::post('/mentor/apply', [MentorApplicationController::class, 'store'])->name('mentor.apply.store');
 
     // Admin Routes
+    Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/users', [AdminController::class, 'users'])->name('users');
+        Route::get('/users/{user}', [AdminController::class, 'userDetail'])->name('user-detail');
+        Route::patch('/users/{user}/toggle-status', [AdminController::class, 'toggleUserStatus'])->name('user.toggle-status');
+        
+        Route::get('/mentors', [AdminController::class, 'mentors'])->name('mentors');
+        Route::post('/mentor/{userId}/approve', [AdminController::class, 'approveMentor'])->name('mentor.approve');
+        Route::post('/mentor/{userId}/reject', [AdminController::class, 'rejectMentor'])->name('mentor.reject');
+        
+        Route::get('/bookings', [AdminController::class, 'bookings'])->name('bookings');
+        
+        Route::get('/categories', [AdminController::class, 'categories'])->name('categories');
+        Route::post('/categories', [AdminController::class, 'storeCategory'])->name('categories.store');
+        Route::patch('/categories/{category}', [AdminController::class, 'updateCategory'])->name('categories.update');
+        Route::delete('/categories/{category}', [AdminController::class, 'deleteCategory'])->name('categories.delete');
+    });
+
+    // Legacy admin routes (for backward compatibility)
     Route::post('/admin/mentor/approve/{userId}', [AdminController::class, 'approveMentor'])->name('admin.mentor.approve');
     Route::post('/admin/mentor/reject/{userId}', [AdminController::class, 'rejectMentor'])->name('admin.mentor.reject');
 });
