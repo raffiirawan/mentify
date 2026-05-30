@@ -163,4 +163,4 @@ document.getElementById('editModal')?.addEventListener('click', function(e) {
     }
 });
 </script>
-@endsection
+</x-app-layout>
