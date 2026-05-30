@@ -29,8 +29,8 @@
                     @endif
 
                     @if (auth()->user()->role == 'admin')
-                        <x-nav-link :href="url('#')" :active="false">
-                            {{ __('Kelola User') }}
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
+                            {{ __('Admin') }}
                         </x-nav-link>
                     @endif
                 </div>
