@@ -3,7 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MentorApplicationController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ExploreController; 
+use App\Http\Controllers\ExploreController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
     // Mentee Routes
     Route::get('/explore', [ExploreController::class, 'index'])->name('mentee.explore');
+    Route::get('/explore/mentor/{id}', [App\Http\Controllers\ExploreController::class, 'show'])->name('mentee.mentor.detail');
 
     // Mentor Application Routes
     Route::get('/mentor/apply', [MentorApplicationController::class, 'create'])->name('mentor.apply');

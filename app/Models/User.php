@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(MentoringClass::class, 'mentor_id');
     }
+
+    public function portfolios()
+    {
+        return $this->hasMany(MentorPortfolio::class);
+    }
 }

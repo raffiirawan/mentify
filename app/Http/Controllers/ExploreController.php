@@ -62,4 +62,16 @@ class ExploreController extends Controller
 
         return view('mentee.explore', compact('mentors', 'allCategories'));
     }
+
+    public function show($id)
+    {
+        $mentor = \App\Models\User::where('role', 'mentor')
+        ->with([
+            'mentoringClasses.category',
+            'portfolios'
+        ])
+        ->findOrFail($id);
+
+        return view('mentee.mentor-detail', compact($mentor));
+    }
 }
