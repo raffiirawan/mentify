@@ -44,11 +44,19 @@ class Booking extends Model
     }
 
     /**
+     * Relasi ke Mentor (User yang mengajar)
+     */
+    public function mentor()
+    {
+        return $this->belongsTo(User::class, 'mentor_id');
+    }
+
+    /**
      * Get the mentor (user) for this booking.
      */
     public function mentoringClass()
     {
-        return $this->belongsTo(User::class, 'mentoring_class_id');
+        return $this->belongsTo(MentoringClass::class, 'mentoring_class_id');
     }
 
     /**

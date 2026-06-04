@@ -20,6 +20,10 @@
                         <x-nav-link :href="url('/explore')" :active="request()->is('/explore')">
                             {{ __('Cari Mentor') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="url('/my-bookings')" :active="request()->is('/explore')">
+                            {{ __('Riwayat Mentoring') }}
+                        </x-nav-link>
                     @endif
 
                     @if (auth()->user()->role == 'mentor')

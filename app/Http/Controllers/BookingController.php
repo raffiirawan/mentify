@@ -42,4 +42,17 @@ class BookingController extends Controller
         // Redirect ke halaman explore (atau nanti ke halaman riwayat booking)
         return redirect()->route('mentee.explore')->with('success', 'Booking berhasil diajukan! Menunggu konfirmasi mentor.');
     }
+
+    // Menampilkan daftar riwayat booking milik Mentee
+    public function index()
+    {
+        // Ambil data booking milik user yang sedang login, beserta data mentor dan kelasnya
+        // latest() digunakan agar pesanan terbaru muncul paling atas.
+        $bookings = Booking::with(['mentor', 'mentoringClass'])
+            ->where('mentee_id', Auth::id())
+            ->latest()
+            ->get();
+
+        return view('mentee.my-bookings', compact('bookings'));
+    }
 }

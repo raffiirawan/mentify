@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/explore/mentor/{mentor_id}/book', [BookingController::class, 'create'])->name('mentee.booking.create');
     Route::post('/explore/mentor/{mentor_id}/book', [BookingController::class, 'store'])->name('mentee.booking.store');
 
+    // Halaman Riwayat Booking untuk Mentee
+    Route::get('/my-bookings', [BookingController::class, 'index'])->name('mentee.bookings.index');
+
     // Mentor Application Routes
     Route::get('/mentor/apply', [MentorApplicationController::class, 'create'])->name('mentor.apply');
     Route::post('/mentor/apply', [MentorApplicationController::class, 'store'])->name('mentor.apply.store');
