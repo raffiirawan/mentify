@@ -5,6 +5,7 @@ use App\Http\Controllers\MentorApplicationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -12,9 +13,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
