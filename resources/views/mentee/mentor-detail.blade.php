@@ -37,7 +37,7 @@
                     {{-- Tombol Aksi --}}
                     <div class="flex flex-wrap gap-4">
                         {{-- Tombol Booking Utama (Sprint 3) --}}
-                        <a href="#" class="bg-mentify-blue text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md flex items-center gap-2">
+                        <a href="{{ route('mentee.booking.create', $mentor->id) }}" class="bg-mentify-blue text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-md flex items-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             Booking Kelas
                         </a>

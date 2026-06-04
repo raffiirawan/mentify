@@ -5,7 +5,7 @@
     {{-- Header Sapaan --}}
     <div class="mb-6">
         <h1 class="text-3xl font-bold text-gray-900 mb-2">
-            Halo, {{ auth()->user()->name }} 👋
+            Halo, {{ auth()->user()->name }}
         </h1>
         <p class="text-lg text-gray-600">
             Mau belajar apa hari ini?

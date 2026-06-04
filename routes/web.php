@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MentorApplicationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,10 @@ Route::middleware('auth')->group(function () {
     // Mentee Routes
     Route::get('/explore', [ExploreController::class, 'index'])->name('mentee.explore');
     Route::get('/explore/mentor/{id}', [ExploreController::class, 'show'])->name('mentee.mentor.detail');
+
+    // Booking Routes (Mentee)
+    Route::get('/explore/mentor/{mentor_id}/book', [BookingController::class, 'create'])->name('mentee.booking.create');
+    Route::post('/explore/mentor/{mentor_id}/book', [BookingController::class, 'store'])->name('mentee.booking.store');
 
     // Mentor Application Routes
     Route::get('/mentor/apply', [MentorApplicationController::class, 'create'])->name('mentor.apply');

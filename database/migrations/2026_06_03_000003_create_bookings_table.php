@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('mentee_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('mentor_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            $table->foreignId('mentoring_class_id')->constrained('mentoring_classes')->onDelete('cascade');
             $table->dateTime('booking_date');
             $table->enum('status', ['pending', 'accepted', 'rejected', 'completed'])->default('pending');
             $table->text('notes')->nullable();

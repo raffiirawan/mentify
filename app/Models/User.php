@@ -31,7 +31,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the bookings where user is a mentee.
+     * Relasi: Jika User ini adalah Mentee, dia punya banyak Riwayat Booking
      */
     public function bookingsAsMentee()
     {
@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the bookings where user is a mentor.
+     * Relasi: Jika User ini adalah Mentor, dia menerima banyak Request Booking
      */
     public function bookingsAsMentor()
     {
