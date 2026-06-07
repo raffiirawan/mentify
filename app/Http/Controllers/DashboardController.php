@@ -11,18 +11,44 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $userId = Auth::id();
+        $user = Auth::user();
+
+        // ==========================================
+        // JALUR 1: JIKA YANG LOGIN ADALAH MENTOR
+        // ==========================================
+        if ($user->role === 'mentor') {
+            
+            // Ambil data request yang masih pending
+            $pendingRequests = Booking::with(['mentee', 'mentoringClass'])
+                ->where('mentor_id', $user->id)
+                ->where('status', 'pending')
+                ->latest()
+                ->get();
+
+            // Ambil jadwal yang sudah disetujui
+            $upcomingSchedules = Booking::with(['mentee', 'mentoringClass'])
+                ->where('mentor_id', $user->id)
+                ->where('status', 'accepted')
+                ->whereDate('booking_date', '>=', now()) // Hanya jadwal hari ini & ke depan
+                ->orderBy('booking_date', 'asc')
+                ->get();
+
+            // Asumsi file blade dashboard mentormu bernama 'mentor_dashboard.blade.php' 
+            // (Sesuaikan nama 'mentor_dashboard' jika kamu menyimpannya dengan nama lain)
+            return view('mentor/dashboard-content', compact('pendingRequests', 'upcomingSchedules'));
+        }
+
+        // ==========================================
+        // JALUR 2: JIKA YANG LOGIN ADALAH MENTEE (Kode Lamamu)
+        // ==========================================
+        $userId = $user->id;
 
         // 1. Hitung Statistik (Quick Stats)
-        // Menghitung jumlah booking berdasarkan statusnya
         $sesiAktif = Booking::where('mentee_id', $userId)->where('status', 'accepted')->count();
         $menungguKonfirmasi = Booking::where('mentee_id', $userId)->where('status', 'pending')->count();
-        
-        // Asumsi sementara: 1 sesi completed = 1 jam belajar
         $totalJamBelajar = Booking::where('mentee_id', $userId)->where('status', 'completed')->count();
 
         // 2. Ambil Rekomendasi Mentor
-        // Mengambil 3 mentor secara acak (random) beserta data kelasnya
         $rekomendasiMentors = User::where('role', 'mentor')
             ->whereHas('mentoringClasses')
             ->with(['mentoringClasses.category']) 
@@ -30,6 +56,7 @@ class DashboardController extends Controller
             ->take(3)
             ->get();
 
-        return view('dashboard', compact('sesiAktif', 'menungguKonfirmasi', 'totalJamBelajar', 'rekomendasiMentors'));
+        // Mengarah ke dashboard mentee
+        return view('mentee/dashboard-content', compact('sesiAktif', 'menungguKonfirmasi', 'totalJamBelajar', 'rekomendasiMentors'));
     }
 }

@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-// 1. Menampilkan Halaman Form Booking
+    // ==========================================
+    // SISI MENTEE
+    // ==========================================
+
+    // 1. Menampilkan Halaman Form Booking
     public function create($mentor_id)
     {
         // Langsung panggil mentor beserta relasi kelas aslinya
@@ -54,5 +58,44 @@ class BookingController extends Controller
             ->get();
 
         return view('mentee.my-bookings', compact('bookings'));
+    }
+
+    // ==========================================
+    // SISI MENTOR
+    // ==========================================
+
+    // 1. Menampilkan daftar permintaan bimbingan masuk
+    public function mentorRequests()
+    {
+        // Ambil data di mana user yang login bertindak sebagai mentor
+        $bookings = Booking::with(['mentee', 'mentoringClass'])
+            ->where('mentor_id', Auth::id())
+            ->latest()
+            ->get();
+
+        return view('mentor.requests', compact('bookings'));
+    }
+
+    // 2. Mengubah status bimbingan (Terima/Tolak)
+    public function updateStatus(Request $request, Booking $booking)
+    {
+        // Keamanan ekstra: Pastikan yang mengubah status benar-benar mentor dari kelas tersebut
+        if ($booking->mentor_id !== Auth::id()) {
+            abort(403, 'Akses ditolak.');
+        }
+
+        // Validasi input status
+        $validated = $request->validate([
+            'status' => 'required|in:accepted,rejected'
+        ]);
+
+        // Update database
+        $booking->update([
+            'status' => $validated['status']
+        ]);
+
+        $pesan = $validated['status'] == 'accepted' ? 'Bimbingan berhasil diterima!' : 'Bimbingan telah ditolak.';
+
+        return back()->with('success', $pesan);
     }
 }

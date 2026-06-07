@@ -1,5 +1,7 @@
-{{-- Content for Mentee Dashboard --}}
-<div class="space-y-8">
+<x-app-layout>
+    {{-- Pembungkus Utama Breeze (Ini yang hilang tadi!) --}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
             {{-- ============================================
                  BAGIAN 1: HEADER & QUICK STATS
@@ -138,4 +140,7 @@
 
                 </div>
             </div>
-</div>
+
+        </div> {{-- Penutup pembatas lebar --}}
+    </div> {{-- Penutup padding Y --}}
+</x-app-layout>

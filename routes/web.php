@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/mentor/apply', [MentorApplicationController::class, 'create'])->name('mentor.apply');
     Route::post('/mentor/apply', [MentorApplicationController::class, 'store'])->name('mentor.apply.store');
 
+    // Halaman Permintaan Masuk untuk Mentor
+    Route::get('/mentor/requests', [BookingController::class, 'mentorRequests'])->name('mentor.requests');
+    
+    // Proses Update Status (Terima/Tolak)
+    Route::patch('/mentor/requests/{booking}', [BookingController::class, 'updateStatus'])->name('mentor.requests.update');
+
     // Admin Routes
     Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
