@@ -86,7 +86,7 @@ class BookingController extends Controller
 
         // Validasi input status
         $validated = $request->validate([
-            'status' => 'required|in:accepted,rejected'
+            'status' => 'required|in:accepted,rejected,completed'
         ]);
 
         // Update database

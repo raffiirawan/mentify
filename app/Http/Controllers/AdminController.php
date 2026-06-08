@@ -29,7 +29,7 @@ class AdminController extends Controller
             ->latest()
             ->get();
 
-        return view('admin.dashboard', compact('stats', 'pendingMentors'));
+        return view('admin.dashboard-content', compact('stats', 'pendingMentors'));
     }
 
     /**

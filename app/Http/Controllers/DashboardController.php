@@ -14,6 +14,14 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         // ==========================================
+        // JALUR KHUSUS: JIKA YANG LOGIN ADALAH ADMIN
+        // ==========================================
+        if ($user->role === 'admin') {
+            // Melempar admin ke route khusus admin buatan temanmu
+            return redirect()->route('admin.dashboard');
+        }
+
+        // ==========================================
         // JALUR 1: JIKA YANG LOGIN ADALAH MENTOR
         // ==========================================
         if ($user->role === 'mentor') {

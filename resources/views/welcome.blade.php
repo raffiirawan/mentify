@@ -98,7 +98,7 @@
                 <!-- ========== KOLOM KANAN: Gambar ========== -->
                 <div class="relative w-full aspect-[4/3] lg:aspect-square">
                     <img 
-                        src="{{ asset('images/hero-student.png') }}" 
+                        src="{{ asset('images/hero-student.jpg') }}" 
                         alt="Mentoring Session" 
                         class="w-full h-full object-cover rounded-3xl shadow-2xl"
                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'800\' viewBox=\'0 0 800 800\'%3E%3Crect fill=\'%23F8FAFC\' width=\'800\' height=\'800\'/%3E%3Crect x=\'100\' y=\'100\' width=\'600\' height=\'600\' rx=\'40\' fill=\'%23E2E8F0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'system-ui\' font-size=\'32\' font-weight=\'600\' fill=\'%2364748B\'%3EMentoring Session%3C/text%3E%3C/svg%3E'"
